@@ -38,24 +38,18 @@ class DeliveryTest {
         $x("//*[@data-test-id='phone']//input").setValue(validUser.getPhone());
         $x("//*[@data-test-id='agreement']").click();
         $x("//div[contains (@class, 'grid-row')]//button").click();
-        $x("//div[contains (text(), 'Успешно!')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $x("//*[@data-test-id='success-notification']//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(15)).shouldBe(Condition.visible);
+        $x("//div[contains (text(), 'Успешно!')]").shouldBe(Condition.visible);
+        $x("//*[@data-test-id='success-notification']//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate)).shouldBe(Condition.visible);
         $x("//*[contains (@class, 'icon_name_close')]").click();
-
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL + "a");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(secondMeetingDate);
         $x("//div[contains (@class, 'grid-row')]//button").click();
-        $x("//div[contains (text(), 'Необходимо подтверждение')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $x("//*[@data-test-id='replan-notification']//*[@class='notification__content']").shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(15)).shouldBe(Condition.visible);
+        $x("//div[contains (text(), 'Необходимо подтверждение')]").shouldBe(Condition.visible);
+        $x("//*[@data-test-id='replan-notification']//*[@class='notification__content']").shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?")).shouldBe(Condition.visible);
         $x("//*[@data-test-id='replan-notification']//*[@class='notification__content']//button").click();
-        $x("//div[contains (text(), 'Успешно!')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $x("//*[@data-test-id='success-notification']//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(15)).shouldBe(Condition.visible);
+        $x("//div[contains (text(), 'Успешно!')]").shouldBe(Condition.visible);
+        $x("//*[@data-test-id='success-notification']//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(Condition.visible);
 
-        // TODO: добавить логику теста в рамках которого будет выполнено планирование и перепланирование встречи.
-        // Для заполнения полей формы можно использовать пользователя validUser и строки с датами в переменных
-        // firstMeetingDate и secondMeetingDate. Можно также вызывать методы generateCity(locale),
-        // generateName(locale), generatePhone(locale) для генерации и получения в тесте соответственно города,
-        // имени и номера телефона без создания пользователя в методе generateUser(String locale) в датагенераторе
     }
 }
